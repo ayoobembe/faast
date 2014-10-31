@@ -1,0 +1,143 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww24060\viewh13140\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 [some things to review: control-flow in ruby, doubles]\
+\
+Challenge 1:\
+\
+FAAST system (Fast and accessible super tube system)\
+System would contain:\
+\
+\
+
+\b i)Passenger
+\b0 \
+Description:\
+	A passenger can touch in at a station (where they would board a train), or touch out at a station (from which they got off the train)\
+	Passenger can\'92t live in the train station, so if they touch in at a station, they must touch out.\
+	A passenger can board a train.\
+	A passenger can get off from a train.\
+Attributes:\
+	name => string\
+	starting station => station\
+	ending station => station\
+	account [min: 0; max: 100] => number\
+	checked_in_status => Boolean\
+	checked_out_status => Boolean\
+Behaviors:\
+	check_in(station): Boolean\
+	board_a_train(train, station): Boolean\
+	get_off_a_train(train, station): Boolean\
+	check_out(station): Boolean\
+Tests:\
+	
+\b self awareness
+\b0 \
+	\'93should know what station it\'92s starting at\'94\
+	\'93should know what station it\'92s going to\'94\
+	\'93should know it\'92s account balance\'94\
+	
+\b abilities\
+	
+\b0 \'93should be able to board a coach/train\'94\
+	\'93should be able to get off a coach/train\'94\
+	\'93should be able to check into a station\'94\
+	\'93should be able to check out of a station\'94\
+	\'93should be able to top-up its account\'94\
+\
+	\
+\
+
+\b ii) Coach
+\b0 \
+	A coach is an object that contains (40) passengers.\
+	There are 40 passenger on a train.\
+	Up till when a coach is full, it can accept more passengers.\
+Attributes:\
+	filled_status ==> boolean\
+	passengers ==> [passenger]\
+Behaviors:\
+	load_passengers() : [passengers]\
+	let_off_passengers(): [passengers]\
+	exchange_passengers(): [passengers]\
+Tests:\
+	
+\b self awareness\
+	
+\b0 \'93should know if it\'92s empty\'94\
+	\'93should know how many passenger it has on board\'94\
+	\'93should know if it\'92s full\'94\
+	
+\b abilities\
+	
+\b0 \'93should be able to accept passengers\'94\
+	\'93should be able to release passengers\'94\
+	\
+
+\b iv) Train
+\b0 \
+Description: \
+	A train contains 
+\b 40 coaches.
+\b0  A train travels from station to station (i.e through the subway system)\
+	At each station, the train drops off some passengers and picks up some passengers.\
+	Each train can hold (40 by 40) passengers.\
+	Each stop (at each station), is timed to approximately 2 minutes.\
+Attributes:\
+	current_station => station\
+	number_of_passenger ==> number\
+	moving ==> boolean\
+	coaches => [coach]\
+Behaviors:\
+	depart(station)\
+	arrive(station)\
+	load_passengers() : [passengers]\
+	let_off_passengers(): [passengers]\
+	exchange_passengers(): void \{note: calls load & let_off\}\
+
+\b 	self awareness\
+	
+\b0 \'93should be aware of its location\'94\
+	\'93should know if it\'92s moving/stationary\'94\
+	\'93should know how many coaches it has\'94
+\b \
+	abilities
+\b0 \
+	\'93should be able to tell coaches to load passengers\'94\
+\
+
+\b iii)Station
+\b0 \
+Description:\
+	A station is where trains stop to pick up passengers.\
+	\'85 need to think some more about what stations do/don\'92t do\
+Attributes:\
+	incoming_trains ==> [ trains ]\
+	outgoing_trains ==> [ trains ]\
+	checked_in_passengers ==> [ passengers ]\
+	checked_out_passengers ==> [ passengers ]\
+Behaviors:\
+	accept_train(): \
+	release_train():\
+	check_in_passenger():\
+	check_out_passenger():\
+Tests:\
+	
+\b self awareness\
+	\
+	abilities
+\b0 \
+\
+\
+\
+\
+\
+\
+Development Order\
+passenger \'97> coach \'97> train \'97> station \'97> Subyway system\
+\
+\
+	}
