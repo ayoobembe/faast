@@ -2,10 +2,11 @@ require "passenger"
 
 describe Passenger do 
 	let(:passenger){Passenger.new("Dale",20)}
-	let(:station){double :station}
+	let(:station){double :Station}
+	let(:train){double :Train}
 
 
-	context "Checking accessors" do 
+	context "Accessors" do 
 		it "should exist when instantiated" do
 			expect(passenger.nil?).to be false
 		end
@@ -19,7 +20,7 @@ describe Passenger do
 		end
 	end
 
-	context "Checking abilities" do 
+	context "Abilities:" do 
 		it "should be able to check into a station" do 
 			expect(station).to receive(:check_in!).with(passenger)
 			passenger.check_into(station)
@@ -52,6 +53,32 @@ describe Passenger do
 			expect(passenger.account_balance).to eq 22 
 			#why expect 22 rather than 18? Thought I modified
 			#@account in previous test case.
+		end
+
+		it "should be able to board a train" do
+			expect(train).to receive(:take_in).with(passenger)
+			passenger.board(train)
+		end
+
+		it "should have a boarded status after boarding" do 
+			allow(train).to receive(:take_in).with(passenger)
+			passenger.board(train)
+			expect(passenger).to be_boarded
+		end
+
+		it "should be able to dismount" do 
+			expect(train).to receive(:let_out).with(passenger) 
+			passenger.dismount(train)
+		end
+
+
+		it "should reflect on status that passenger dismounted" do
+			allow(train).to receive(:take_in).with(passenger)
+			passenger.board(train)
+			expect(passenger.boarded?).to be true
+			allow(train).to receive(:let_out).with(passenger)
+			passenger.dismount(train)
+			expect(passenger.boarded?).to be false
 		end
 
 

@@ -8,6 +8,7 @@ class Passenger
 		@check_in_status = false
 		@origin
 		@destination
+		@boarded_status = false
 	end
 
 #Attribute Accessors
@@ -37,6 +38,20 @@ class Passenger
 	def top_up!(cash)
 		@account = @account + cash
 		return true
+	end
+
+	def boarded?
+		@boarded_status
+	end
+
+	def board(train)
+		train.take_in(self)
+		@boarded_status = true
+	end
+
+	def dismount(train)
+		train.let_out(self)
+		@boarded_status = false
 	end
 end
 
