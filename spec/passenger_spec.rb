@@ -1,7 +1,7 @@
 require "passenger"
 
 describe Passenger do 
-	let(:passenger){Passenger.new("Dale",100)}
+	let(:passenger){Passenger.new("Dale",20)}
 	let(:station){double :station}
 
 
@@ -15,7 +15,7 @@ describe Passenger do
 		end
 
 		it "should know its account balance" do 
-			expect(passenger.account_balance).to eq 100 
+			expect(passenger.account_balance).to eq 20 
 		end
 	end
 
@@ -42,10 +42,19 @@ describe Passenger do
 			expect(passenger).not_to be_checked_in
 		end
 
-		it "should be able to withdraw from account" do 
-			
-			 
+		it "should be able to pay fare from its account" do 
+			expect(passenger.pay_fare!(4)).to eq 4
+			expect(passenger.account_balance).to eq 16 
 		end
+
+		it "should be able to top up its account" do
+			expect(passenger.top_up!(2)).to be true
+			expect(passenger.account_balance).to eq 22 
+			#why expect 22 rather than 18? Thought I modified
+			#@account in previous test case.
+		end
+
+
 
 
 

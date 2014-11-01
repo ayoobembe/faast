@@ -1,3 +1,4 @@
+
 class Passenger
 
 #Object constructor
@@ -28,14 +29,32 @@ class Passenger
 		@check_in_status = false
 	end
 
+	def pay_fare!(ticket_fare)
+		@account = @account - ticket_fare
+		return ticket_fare
+	end
+
+	def top_up!(cash)
+		@account = @account + cash
+		return true
+	end
 end
 
 
 
 
+=begin  
+Methods that need to be defined in other classes:
+Station:
+	.check_in!(passenger)
+	.check_out!(passenger)
+=end  
 
 
-
+=begin  
+TO_DO!
+- make pay_fare more robust (what if balance < ticket_fare)
+=end
 
 
 
