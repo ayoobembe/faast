@@ -27,10 +27,15 @@ describe Coach do
 		end
 
 		it "should increment number of passengers on accepting more" do 
-			allow(coach).to receive(:accept).with(passenger)
+			#expect(coach).to receive(:accept).with(passenger)
 			coach.accept(passenger)
 			expect(coach.passengers_num).to eq 1
 		end
+
+	it "should be able to release passengers" do
+
+	end
+
 
 	end
 	
