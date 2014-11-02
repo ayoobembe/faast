@@ -33,7 +33,7 @@ describe Coach do
 		end
 
 	it "should be able to release passengers" do
-
+		expect(coach.release(passenger)).to be true
 	end
 
 

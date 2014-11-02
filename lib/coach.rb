@@ -16,9 +16,14 @@ class Coach
 		@passengers.count
 	end
 
-	def accept(passenger)
-		@passengers.push(passenger)
+	def accept(new_passenger)
+		@passengers.push(new_passenger)
 		true
+	end
+
+	def release(onboard_passenger)
+		#@passengers.pop(onboard_passenger)
+		return true
 	end
 
 end            
@@ -30,6 +35,7 @@ to pass in variable when creating a coach.
 
 To DO:
 modify accept
-
+modify release
+ --- Both of the above would not actually work in reality.
 =end  
 
