@@ -6,7 +6,7 @@ describe Passenger do
 	let(:train){double :Train}
 
 
-	context "Accessors" do 
+	context "Accessors:" do 
 		it "should exist when instantiated" do
 			expect(passenger.nil?).to be false
 		end
